@@ -30,3 +30,5 @@ class LinkedList:
             self.tail = new_node
         
         self.length += 1
+        
+        return True
