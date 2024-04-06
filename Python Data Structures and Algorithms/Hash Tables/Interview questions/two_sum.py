@@ -17,7 +17,7 @@ A target integer target.
 
 Output:
 
-A list of two integers representing the indices of the two numbers in the input array nums that add up to the target. If no two numbers in the input array add up to the target, return an empty list [].
+A list of two integer representing the indices of the two numbers in the input array nums that add up to the target. If no two numbers in the input array add up to the target, return an empty list [].
 """
 
 def two_sum(nums, target):
