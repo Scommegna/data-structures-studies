@@ -105,10 +105,9 @@ def stream_max(nums):
     
     for num in nums:
         max_heap.insert(num)
-        
-        answer.append(max_heap.remove())
+            
+        answer.append(max_heap.heap[0])
         
         max_heap.insert(num)
         
-    return answer    
-    
+    return answer  
