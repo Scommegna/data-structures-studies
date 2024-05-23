@@ -18,14 +18,5 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 """
 
 class Solution:
-    def split_string(self, string, length):
-        return [string[i:i+length] for i in range(0, len(string), length)]
-
     def strStr(self, haystack: str, needle: str) -> int:
-        new_haystack = self.split_string(haystack, len(needle))
-
-        for i in range(len(new_haystack)):
-            if new_haystack[i] == needle:
-                return i
-
-        return -1
+        return haystack.find(needle)
