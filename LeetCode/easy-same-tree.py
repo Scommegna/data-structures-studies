@@ -56,3 +56,5 @@ class Solution:
                     return False
 
         return True
+    
+#it is not 100% correct
