@@ -23,38 +23,13 @@ Output: false
 """
 
 class Solution:
-    def dfs_in_order(self, node):
-        if node is None:
-            return []
-
-        results = []
-
-        def traverse(node):
-            if node.left is not None:
-                traverse(node.left)
-
-            results.append(node.val)
-
-            if node.right is not None:
-                traverse(node.right)
-
-        traverse(node)
-
-        return results
-
-
-
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        tree1 = self.dfs_in_order(p)
-        tree2 = self.dfs_in_order(q)
+        if p is None and q is None:
+            return True
 
-        if len(tree1) != len(tree2):
+        if p is None or q is None:
             return False
-        else:
-            for i in range(len(tree1)):
-                if tree1[i] != tree2[i]:
-                    return False
 
-        return True
-    
-#it is not 100% correct
+        if p.val == q.val:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return False
