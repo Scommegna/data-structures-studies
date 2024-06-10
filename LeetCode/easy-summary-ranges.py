@@ -58,4 +58,3 @@ class Solution:
 
         return output
 
-##draw phases
