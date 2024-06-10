@@ -57,3 +57,5 @@ class Solution:
             pointer += 1
 
         return output
+
+##draw phases
