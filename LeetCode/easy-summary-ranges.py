@@ -32,29 +32,24 @@ Explanation: The ranges are:
 
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        if len(nums) == 0:
-            return ""
-        elif len(nums) == 1:
-            return [str(nums[0])]
-
-        output = []
-        pointer = 1
-        aux1 = 0
-        aux2 = 0
-
+        results = []
+        pointer = 0
+        
         while pointer < len(nums):
-            if nums[pointer] == nums[aux2] + 1:
-                aux2 = pointer
-            elif nums[pointer] != nums[aux2] + 1 and aux2 == aux1:
-                output.append(str(nums[aux1]))
-                aux1 = pointer
-                aux2 = pointer
+            aux = pointer
+            temp = ""
+
+            while aux + 1 < len(nums) and nums[aux + 1] == nums[aux] + 1:
+                aux += 1
+
+            if pointer == aux:
+                temp = str(nums[aux])
             else:
-                output.append(str(nums[aux1]) + "->" + str(nums[aux2]))
-                aux1 = pointer
-                aux2 = pointer
+                temp = str(nums[pointer]) + "->" + str(nums[aux])
 
-            pointer += 1
+            results.append(temp)
 
-        return output
+            pointer = aux + 1
+
+        return results
 
