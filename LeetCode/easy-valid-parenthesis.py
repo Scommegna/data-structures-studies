@@ -20,6 +20,8 @@ Example 3:
 
 Input: s = "(]"
 Output: false
+
+Stack approach is easier
 """
 
 class Solution:
