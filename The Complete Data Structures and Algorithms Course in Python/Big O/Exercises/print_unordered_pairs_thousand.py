@@ -1,5 +1,7 @@
 """
 What is the runtime of the below code?
+
+the 0 - 100000 is constant time
 """
 # O(n * m)
 def printUnorderedPairs(arrA, arrB):
