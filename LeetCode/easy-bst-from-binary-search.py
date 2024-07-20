@@ -11,4 +11,4 @@ height-balanced binary search tree.
 #         self.right = right
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-        return 
+        return None
