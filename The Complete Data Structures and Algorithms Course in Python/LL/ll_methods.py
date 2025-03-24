@@ -63,6 +63,17 @@ class LinkedList:
         while current is not None:
             print(current.value)
             current = current.next
+            
+    def search(self, value):
+        current = self.head
+        
+        while current is not None:
+            if current.value == value:
+                return True
+            
+            current = current.next
+            
+        return False
         
     def __str__(self):
         list_str = ""
