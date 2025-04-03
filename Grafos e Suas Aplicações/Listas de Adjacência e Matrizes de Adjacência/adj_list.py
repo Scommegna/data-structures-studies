@@ -129,8 +129,51 @@ class GraphWithCheckConnectionMethod:
             print(vertex, "->", self.adj_list[vertex])
 
 """
-3️⃣ Implementar Busca em Profundidade (DFS)
+3️⃣ Implementar Busca em Largura (BFS)
 
-🔹 Desafio: Implemente um método que percorra o grafo usando Busca em Profundidade (DFS) a partir de um vértice dado.
+🔹 Desafio: Implemente um método que percorra o grafo usando Busca em Largura (BFS) a partir de um vértice dado.
 💡 Dica: Use recursão ou uma pilha.
 """
+from collections import deque
+
+
+def bfs(graph, vertex):
+    visited_vertex = set() # Conjunto para armazenar nós visitados
+    queue = deque([vertex]); # Fila iniciando com o nó inicial
+    parent = {"start": None} # Dicionário para armazenar caminhos (nó pai)
+    
+    visited_vertex.add(vertex)
+    
+    while queue:
+        node = queue.popleft() # Remove o primeiro elemento (FIFO)
+        
+        for neighbor in graph[node]: #Percorre os vizinhos do nó atual
+            visited_vertex.add(neighbor)
+            queue.append(neighbor)
+            parent[neighbor] = node #Registra o pai de cada nó visitado
+            
+    return parent
+
+# Exemplo de uso
+# Grafo representado como lista de adjacência
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F', 'G'],
+    'D': ['B'],
+    'E': ['B', 'H'],
+    'F': ['C'],
+    'G': ['C'],
+    'H': ['E']
+}
+
+# Executando BFS a partir do nó 'A'
+paths = bfs(graph, 'A')
+
+# Mostrando os caminhos armazenados
+print("Caminhos encontrados:")
+for node, parent in paths.items():
+    print(f"{node} <- {parent}")
+            
+        
+        
