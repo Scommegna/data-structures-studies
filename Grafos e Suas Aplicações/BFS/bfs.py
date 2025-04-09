@@ -15,6 +15,8 @@ O BFS (Busca em Largura) é um algoritmo para percorrer ou buscar em um grafo. E
 # ✅ 1. Implementação com Lista de Adjacência
 
 from collections import deque
+from os.path import pathsep
+
 
 class Graph:
     def __init__(self):
@@ -152,3 +154,114 @@ print("------------------------------")
 bfs_adj_matrix(exercise_graph2, 0)
     
 # 2️⃣ (Médio) Modifique a implementação de BFS para contar o número de componentes conectados em um grafo.
+
+"""
+✅ O que são componentes conectados em um grafo?
+
+📌 Definição (grafo não direcionado):
+
+Um componente conectado é um subconjunto de vértices de um grafo não direcionado onde:
+	•	Qualquer vértice pode ser alcançado a partir de qualquer outro dentro do mesmo componente.
+	•	E não existe nenhuma conexão com vértices fora desse subconjunto.
+
+Em outras palavras:
+
+Um componente conectado é uma “ilha” dentro do grafo onde todos os vértices estão conectados entre si, mas não com vértices de outras “ilhas”.
+
+
+🧭 Definição (grafo direcionado):
+
+Em um grafo direcionado, há dois tipos:
+	•	Componente fortemente conectado: todos os vértices do componente são acessíveis entre si em ambas as direções.
+	•	Componente fracamente conectado: se ignorarmos a direção das arestas, todos os vértices estariam conectados.
+	
+📊 Exemplo (grafo não direcionado)
+
+Imagine o grafo:
+
+0 —— 1      3 —— 4      5
+     |              
+     
+
+	•	Componente 1: {0, 1}
+	•	Componente 2: {3, 4}
+	•	Componente 3: {5} (vértice isolado)
+
+    Total: 3 componentes conectados
+    
+
+💡 Como encontrar componentes conectados?
+
+Usamos algoritmos como:
+	•	BFS (Busca em Largura)
+	•	DFS (Busca em Profundidade)
+
+Cada vez que você encontra um vértice não visitado e inicia uma busca, você está entrando em um novo componente.
+
+"""
+
+graph = {
+    0: [1],
+    1: [0],
+    2: [3],
+    3: [2, 4],
+    4: [3],
+    5: [],
+}
+
+def bfs(start, visited, graph):
+    queue = deque([start])
+    visited.add(start)
+
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if not neighbor in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+def count_connected_components(graph):
+    visited = set()
+    components_count = 0
+
+    for key in graph.keys():
+        if not key in visited:
+            bfs(key, visited, graph)
+            components_count += 1
+
+    return components_count
+
+print("")
+print("Medium exercise: found connected components in graph:")
+print(count_connected_components(graph))
+
+# 3️⃣ (Difícil) Use BFS para encontrar o menor caminho entre dois vértices em um grafo não ponderado.
+def bfs_for_shortest_path(start, end, graph):
+    visited = set([start])
+    paths = {start: [start]}
+    queue = deque([start])
+
+    while queue:
+        current = queue.popleft()
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                paths[neighbor] = paths[current] + [neighbor]
+                queue.append(neighbor)
+
+    if end in paths:
+        return paths[end]
+
+    return None
+
+first_input = {
+    0: [1, 2],
+    1: [0, 3],
+    2: [0, 3],
+    3: [1, 2, 4],
+    4: [3]
+}
+
+print("")
+print("output for hard exercise of find shortest path between nodes")
+print(bfs_for_shortest_path(0, 4, first_input))
