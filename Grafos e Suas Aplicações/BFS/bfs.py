@@ -7,9 +7,9 @@ O BFS (Busca em Largura) é um algoritmo para percorrer ou buscar em um grafo. E
 	•	Utiliza fila (FIFO - Primeiro a Entrar, Primeiro a Sair).
 	•	Garante o caminho mais curto em um grafo não ponderado.
 	•	É útil para:
-	•	Encontrar caminhos mínimos.
-	•	Verificar a conectividade de um grafo.
-	•	Resolver quebra-cabeças como o Cubo de Rubik.
+	    •	Encontrar caminhos mínimos.
+	    •	Verificar a conectividade de um grafo.
+	    •	Resolver quebra-cabeças como o Cubo de Rubik.
 """
 
 # ✅ 1. Implementação com Lista de Adjacência
